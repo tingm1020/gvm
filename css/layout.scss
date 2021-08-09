@@ -1,0 +1,158 @@
+﻿@charset "utf-8";
+@import "_reset.scss";
+@import "_base.scss";
+
+
+/*=============================================
+=                    base                     =
+=============================================*/
+body{
+	font:normal 12px/18px Arial,'Microsoft JhengHei','微軟正黑體';
+	color:#fff;
+}
+input,select,textarea{
+	font:normal 12px/18px Arial,'Microsoft JhengHei','微軟正黑體';
+	padding:0;
+	margin:0;
+	vertical-align:middle;}
+a{color:#fff;text-decoration:none;}
+body,html{    
+	height: 100%;
+	
+}
+/*=============================================
+=                  All setting               =
+=============================================*/
+$c1:#ffb71b;
+$c2:#f7f8f4;
+$c3:#474747;
+$c4:#99000e;
+$c5:#eaeaea;
+$c6:#CE8900;
+
+/*=============================================
+=                 Structural                  =
+=============================================*/
+
+.wrapper{
+	@include abs($w:100%,$h:100%);
+	-webkit-overflow-scrolling: touch;
+	display: block;
+	text-align: center;
+	background: #fff;
+}
+.pcShow{
+	display: block;
+}
+.mShow{
+	display: none;
+}
+.clear{
+	clear: both;
+}
+
+/*=============================================
+=                     index                   =
+=============================================*/
+
+.main{
+	width: 100%;
+    margin:0 auto;
+	transition: 0.3s;
+	height: 100%;
+	box-sizing: border-box;
+	.page{
+		position: relative;
+		@include wh(100%,100%);
+		margin: 0 auto;
+	}
+}
+
+.clear{
+	clear: both;
+}
+/*=============================================
+=                    footer                  =
+=============================================*/
+
+/*=============================================
+=                    popup                   =
+=============================================*/
+.popup{
+	@include fix($w:100%,$h:100%,$t:0,$l:0);
+	display: block;
+	z-index: -99;
+	opacity: 0;
+	visibility: hidden;
+	overflow: auto;
+	transition: z-index 0s,visibility 0s,opacity 0s;
+	&.on{
+		opacity: 1;
+		visibility: visible;
+		z-index: 9;
+		transition: z-index 0s,visibility 0.5s,opacity 1s;
+	}
+	.popWrap{
+		position: relative;
+		font-size: 0;
+		@include wh(100%,100%);
+		text-align: center;
+		box-sizing: border-box;
+		overflow: hidden;
+		background: rgba(255, 183, 27, .5);
+		&:before{
+			content: '';
+			@include wh(0,100%);
+			display: inline-block;
+			vertical-align: middle;
+		}
+	}
+	.popCon{
+		position: relative;
+		display: inline-block;
+		vertical-align: middle;
+		z-index: 2;
+		.xBtn{
+			@include abs($w:30px,$h:30px,$t:-11px,$r:-11px);
+			display: block;
+			background: $c1;
+			z-index: 2;
+			border-radius: 30px;
+			&:before,&:after{
+				content: '';
+				@include abs($w:3px,$h:18px,$t:6px,$l:14px);
+				background: #fff;
+				display: inline-block;
+			}
+			&:before{
+				transform: rotate(45deg);
+			}
+			&:after{
+				transform: rotate(-45deg);
+			}
+		}
+	}
+	.contBox{
+		position: relative;
+		@include wh(400px,auto);
+		background: #fff;
+		border-radius: 13px;
+		border: 5px solid $c6;
+		display: none;
+		transition: all .3s;
+		padding: 20px;
+		box-sizing: border-box;
+
+	}
+}
+/*=============================================
+=                     RWD                   =
+=============================================*/
+@include rwd(max,768){
+	.pcShow{
+		display: none;
+	}
+	.mShow{
+		display: block;
+	}
+}
